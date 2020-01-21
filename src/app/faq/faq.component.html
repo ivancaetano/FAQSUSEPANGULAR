@@ -1,0 +1,25 @@
+<ng-template #noMessages>
+  <div class="no-messages">
+    <span class="title"></span>
+  </div>
+</ng-template>
+
+<div class="main">
+  <div class="user-info">FAQ SUSEP</div>
+  <div *ngIf="resposta.conversas && resposta.conversas[0]; else noMessages" class="messages-container" #scrollMe>
+    <ul>
+      <li *ngFor="let conversa of resposta.conversas" [style.flex-direction]="row-reverse">
+        <span [ngClass]="speech-bubble-own">{{ conversa.deConversa }}
+          <div *ngIf="conversa.noTipoConversa=='CARTOES'">
+            <div *ngFor="let cartao of conversa.lsCartoes">
+              <button (click)="responde(cartao.vrCartao)" mat-raised-button color="primary">{{ cartao.deCartao}}</button>
+              <br>
+            </div>
+
+          </div>
+        </span>
+      </li>
+    </ul>
+  </div>
+
+</div>
